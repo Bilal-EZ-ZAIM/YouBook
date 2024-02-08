@@ -1,53 +1,47 @@
 @extends('layaout.master')
+
 @section('main')
-    <div class="container mt-5">
+    @if (session()->has('user_id'))
+        <p>Session ID: {{ session('user_id') }}</p>
+    @endif
 
-        <div class="hero-section text-center d-flex align-items-center" style="height: 80vh; background-color: #f0f0f0;">
-            <div class="container">
-                <h1 class="mb-4">Bienvenue à l'école YouBook</h1>
-                <p class="lead">Découvrez un nouveau monde de connaissances avec l'application conviviale de l'école
-                    YouBook.</p>
-            </div>
-        </div>
-        <div>
-            <h2>Liste des livres disponibles</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nom</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($livres as $livre)
-                        <tr>
-                            <td>{{ $livre['id'] }}</td>
-                            <td>{{ $livre['name'] }}</td>
-                            <td>{{ $livre['description'] }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
 
-        <div class="card mt-4">
-            <div class="card-header">
-                <h2>Emprunter un livre</h2>
-            </div>
-            <div class="card-body">
-                <button class="btn btn-primary" onclick="borrowBook()">Emprunter</button>
-            </div>
-        </div>
 
-        <div class="card mt-4">
-            <div class="card-header">
-                <h2>Retourner un livre</h2>
-            </div>
-            <div class="card-body">
-                <button class="btn btn-success" onclick="returnBook()">Retourner</button>
-            </div>
+    <div class="container mt-5 mb-5">
+        <div class="row row-cols-1 row-cols-md-3 g-4 custom-card">
+            @forelse ($livres as $livre)
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="https://images.pexels.com/photos/1516983/pexels-photo-1516983.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                            class="card-img-top" alt="{{ $livre->name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $livre->name }}</h5>
+                            <p class="card-text">{{ Str::limit($livre->bio, 100) }}</p>
+                            <p class="card-text"><small class="text-muted">ID: {{ $livre->id }}</small></p>
+                            @if (session()->has('user_id'))
+                                <form action="{{ route('acheter') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="livre_id" value="{{ $livre->id }}">
+                                    <button type="submit" class="btn btn-primary">Acheter</button>
+                                </form>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <p>Votre panier est vide.</p>
+            @endforelse
         </div>
     </div>
-    {{-- <x-table :livres="$livres" /> --}}
+
+    <div class="d-flex justify-content-center mt-3">
+        {{ $livres->links() }}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+    </script>
 @endsection

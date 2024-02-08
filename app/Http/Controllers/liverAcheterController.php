@@ -13,6 +13,7 @@ class liverAcheterController extends Controller
         $livers = acheterLiverModeles::join('livers', 'acheter_liver_modeles.liver_id', '=', 'livers.id')
             ->select('acheter_liver_modeles.*', 'livers.*')
             ->get();
-        return view('liversAllAcheter');
+            
+        return view('liversAllAcheter' , compact('livers'));
     }
 }

@@ -19,13 +19,16 @@ use App\Http\Controllers\aboutController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/bilanox', [homeController::class, 'inde'])->name('bilanox');
+Route::get('/', [homeController::class, 'inde'])->name('bilanox');
 Route::get('/profile', [profileController::class, 'index']);
 Route::get('/profile/create', [profileController::class, 'create'])->name('create');
+Route::get('/profile/admin', [profileController::class, 'admin'])->name('admin');
 Route::post('/profile/create', [profileController::class, 'store'])->name('store');
+Route::post('/profile/logout', [profileController::class, 'logout'])->name('logout');
+// Route::get('/profile/register', [profileController::class, 'creat'])->name('register');
+Route::get('/profile/register', [profileController::class, 'register'])->name('register');
+Route::get('/profile/creat', [profileController::class, 'creat']);
+Route::post('/profile/creat', [profileController::class, 'login'])->name('login');
 Route::get('/livers', [liversController::class, 'index'])->name('liver');
 Route::get('/livers/create', [liversController::class, 'create'])->name('create');
 Route::post('/livers/create', [liversController::class, 'store'])->name('store');

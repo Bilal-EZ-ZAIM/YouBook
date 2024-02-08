@@ -10,7 +10,7 @@ class liversController extends Controller
 {
     public function index()
     {
-        $livers = livers::paginate(5);
+        $livers = livers::paginate(6);
         return view('liversAll', compact('livers'));
     }
     public function create()
@@ -36,7 +36,7 @@ class liversController extends Controller
             "user_id" => 2,
             "liver_id" => $id,
         ]);
-        return redirect()->route('bilanox');
+        return redirect()->route('liversAllAcheter');
     }
   
 
