@@ -43,7 +43,7 @@
             <div class="btn-group-vertical">
                 <button class="btn btn-primary" onclick="showSection('categorySection')">ajoute Category</button>
                 <button class="btn btn-primary" onclick="showSection('tagSection')">ajout Tag</button>
-                <button class="btn btn-primary" onclick="showSection('category')">les Category</button>
+                <button class="btn btn-primary" onclick="showSection('category')">les Profiles</button>
                 <button class="btn btn-primary" onclick="showSection('tages')">les tages</button>
                 <button class="btn btn-primary" onclick="showSection('wiki')">les livers</button>
                 <button class="btn btn-primary" onclick="showSection('statictique')">statictique</button>
@@ -78,14 +78,14 @@
 
             <div id="wiki" class="content-section">
                 <div class="content">
-                    <h2>Wiki</h2>
+                    <h2>les livers</h2>
                     @if (!empty($wiki))
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">is_archived</th>
+                                    <th scope="col">Date limite de soumission</th>
                                     <th scope="col">Description</th>
                                     <th scope="col">Actions</th>
                                 </tr>
@@ -144,12 +144,8 @@
 
             <div id="category" class="content-section">
                 <div class="content">
-                    <h2>Category</h2>
-                    <form id="search-form">
-                        <input type="text" id="search-term" class="form-control" placeholder="search category">
-                        <button type="submit" class="btn btn-primary ModifierCategory">rechercher</button>
-                    </form>
-                    @if (!empty($data['tag']))
+                    <h2>les profiles</h2>
+                    @if (!empty($profile ))
                         <table class="table">
                             <thead>
                                 <tr>
@@ -159,10 +155,10 @@
                                 </tr>
                             </thead>
                             <tbody id="search-results">
-                                @foreach ($data['categori'] as $index => $row)
+                                @foreach ($profile as $index => $row)
                                     <tr>
                                         <th scope="row">{{ $index + 1 }}</th>
-                                        <td>{{ $row->nomCategorie }}</td>
+                                        <td>{{ $row->name }}</td>
                                         <td>
                                             <button type="button" class="btn btn-primary ModifierCategory"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModal"

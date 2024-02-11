@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\acheterLiverModeles;
+use App\Models\LiversResrveModeles;
 use Illuminate\Http\Request;
 
 class liverAcheterController extends Controller
 {
     //
-      public function getAllData()
+    public function getAllData()
     {
-        $livers = acheterLiverModeles::join('livers', 'acheter_liver_modeles.liver_id', '=', 'livers.id')
-            ->select('acheter_liver_modeles.*', 'livers.*')
-            ->get();
-            
-        return view('liversAllAcheter' , compact('livers'));
+        $livers = LiversResrveModeles::join('livers', 'livers_resrve_modeles.liver_id', '=', 'livers.id')
+        ->where('livers_resrve_modeles.user_id', 2)
+        ->get();
+
+        return view('liversAllAcheter', compact('livers'));
     }
 }

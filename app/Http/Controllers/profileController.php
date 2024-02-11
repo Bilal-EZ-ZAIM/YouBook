@@ -18,10 +18,11 @@ class profileController extends Controller
     public function admin()
     {
         $wiki = livers::all();
+        $profile = Profile::all();
         $categori = [];
         $tag = [];
         $data = [];
-        return view('dashbordAdmin', compact('wiki', 'tag', 'categori', 'data'));
+        return view('dashbordAdmin', compact('wiki', 'tag', 'profile', 'data'));
     }
     public function create()
     {

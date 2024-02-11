@@ -19,11 +19,7 @@
                             <p class="card-text">{{ Str::limit($livre->bio, 100) }}</p>
                             <p class="card-text"><small class="text-muted">ID: {{ $livre->id }}</small></p>
                             @if (session()->has('user_id'))
-                                <form action="{{ route('acheter') }}" method="post">
-                                    @csrf
-                                    <input type="hidden" name="livre_id" value="{{ $livre->id }}">
-                                    <button type="submit" class="btn btn-primary">Acheter</button>
-                                </form>
+                                <a class="btn btn-primary" href="{{ route('reserver', ['id' => $livre->id]) }}">Reserver</a>
                             @endif
                         </div>
                     </div>

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\acheterLiverModeles;
 use App\Models\livers;
+use App\Models\LiversResrveModeles;
 use Illuminate\Http\Request;
+
 
 class liversController extends Controller
 {
+    
     public function index()
     {
         $livers = livers::paginate(6);
@@ -31,10 +33,12 @@ class liversController extends Controller
     public function acheter(Request $request)
     {
 
-        $id = $request->livre_id;
-        acheterLiverModeles::create([
-            "user_id" => 2,
+        $id = $request->id;
+        $returnDate = $request->returnDate;
+        LiversResrveModeles::create([
+            "user_id" => session('user_id'),
             "liver_id" => $id,
+            "dateFinal" => $returnDate,
         ]);
         return redirect()->route('liversAllAcheter');
     }

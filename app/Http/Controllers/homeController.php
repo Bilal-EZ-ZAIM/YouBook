@@ -14,7 +14,8 @@ class homeController extends Controller
     }
     public function inde()
     {
-        $livres = livers::paginate(6);
+        $livres = livers::latest()->paginate(6);
+        $lis = livers::latest();
         return view('bil', compact('livres'));
     }
 }

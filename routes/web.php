@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\aboutController;
+use App\Http\Controllers\LiversReserveController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,8 +32,9 @@ Route::get('/profile/creat', [profileController::class, 'creat']);
 Route::post('/profile/creat', [profileController::class, 'login'])->name('login');
 Route::get('/livers', [liversController::class, 'index'])->name('liver');
 Route::get('/livers/create', [liversController::class, 'create'])->name('create');
-Route::post('/livers/create', [liversController::class, 'store'])->name('store');
-Route::post('/livers/create', [liversController::class, 'acheter'])->name('acheter');
+// Route::post('/livers/create', [liversController::class, 'store'])->name('store');
+Route::post('/livers/res', [liversController::class, 'acheter'])->name('acheter');
 Route::get('/livers/acheter/data', [liverAcheterController::class, 'getAllData'])->name('liversAllAcheter');
+Route::get('/livers/res', [LiversReserveController::class, 'index'])->name('reserver');
 
 Route::get('/aboutes', [aboutController::class, 'index'])->name('aboutes');
