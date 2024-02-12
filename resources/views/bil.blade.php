@@ -1,12 +1,6 @@
 @extends('layaout.master')
 
 @section('main')
-    @if (session()->has('user_id'))
-        <p>Session ID: {{ session('user_id') }}</p>
-    @endif
-
-
-
     <div class="container mt-5 mb-5">
         <div class="row row-cols-1 row-cols-md-3 g-4 custom-card">
             @forelse ($livres as $livre)

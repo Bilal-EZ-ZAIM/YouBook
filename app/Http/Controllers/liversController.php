@@ -20,6 +20,8 @@ class liversController extends Controller
         return view('livers', ['nom' => "je suis profile pages"]);
     }
 
+    
+
     public function store(Request $request)
     {
         $name = $request->name;

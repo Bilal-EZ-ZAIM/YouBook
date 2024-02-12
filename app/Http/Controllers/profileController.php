@@ -79,7 +79,10 @@ class profileController extends Controller
     }
     public function logout()
     {
-        Session::put('user_id', null);
+        Session::forget('user_id');
+        Session::flush();
+        // أيضًا يمكنك استخدام Session::flush() إذا أردت مسح جميع الجلسات بأكملها
         return redirect()->route('login');
     }
+    
 }

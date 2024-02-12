@@ -26,15 +26,18 @@ Route::get('/profile/create', [profileController::class, 'create'])->name('creat
 Route::get('/profile/admin', [profileController::class, 'admin'])->name('admin');
 Route::post('/profile/create', [profileController::class, 'store'])->name('store');
 Route::post('/profile/logout', [profileController::class, 'logout'])->name('logout');
-// Route::get('/profile/register', [profileController::class, 'creat'])->name('register');
 Route::get('/profile/register', [profileController::class, 'register'])->name('register');
 Route::get('/profile/creat', [profileController::class, 'creat']);
 Route::post('/profile/creat', [profileController::class, 'login'])->name('login');
 Route::get('/livers', [liversController::class, 'index'])->name('liver');
 Route::get('/livers/create', [liversController::class, 'create'])->name('create');
-// Route::post('/livers/create', [liversController::class, 'store'])->name('store');
+Route::post('/livers/create', [liversController::class, 'store'])->name('store');
 Route::post('/livers/res', [liversController::class, 'acheter'])->name('acheter');
 Route::get('/livers/acheter/data', [liverAcheterController::class, 'getAllData'])->name('liversAllAcheter');
 Route::get('/livers/res', [LiversReserveController::class, 'index'])->name('reserver');
 
 Route::get('/aboutes', [aboutController::class, 'index'])->name('aboutes');
+
+
+
+// sudo  ./vendor/bin/sail up -d

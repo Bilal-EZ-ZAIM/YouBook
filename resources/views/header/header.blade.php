@@ -16,10 +16,12 @@
                     <a class="nav-link {{ request()->is('aboutes') ? 'active' : '' }}" href="{{ url('aboutes') }}">About
                         Us</a>
                 </li>
+                @if (session()->has('user_id') && session()->get('user_id') == 3)
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('admin') ? 'active' : '' }}"
                         href="{{ url('/profile/admin') }}">Dash Bord</a>
                 </li>
+                 @endif
                 @if (session()->has('user_id'))
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('profile') ? 'active' : '' }}"
@@ -27,15 +29,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('aboutes') ? 'active' : '' }}"
-                            href="{{ url('/livers/acheter/data') }}">livers acheter</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <span class="nav-link">Session ID: {{ session('user_id') }}</span>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('admin') ? 'active' : '' }}"
-                            href="{{ url('/profile/admin') }}">livers acheter</a>
+                            href="{{ url('/livers/acheter/data') }}">livers Reserver</a>
                     </li>
                 @else
                     <li class="nav-item">
